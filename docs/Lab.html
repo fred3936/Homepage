@@ -11,7 +11,7 @@
 
 
 
-<title>Journal.knit</title>
+<title>Lab Pages With URL</title>
 
 <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -29,9 +29,6 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -221,69 +218,6 @@ $(document).ready(function () {
 
 
 
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-@media print {
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-
-</style>
-
-
 
 </head>
 
@@ -291,16 +225,6 @@ div.tocify {
 
 
 <div class="container-fluid main-container">
-
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -321,10 +245,10 @@ div.tocify {
   <a href="index.html">Home</a>
 </li>
 <li>
-  <a href="Journal.html">Assignments</a>
+  <a href="Assignment.html">Assignments</a>
 </li>
 <li>
-  <a href="Links.html">Labs</a>
+  <a href="Lab.html">Labs</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -338,34 +262,30 @@ div.tocify {
 
 
 
+<h1 class="title toc-ignore">Lab Pages With URL</h1>
 
 </div>
 
 
-<div id="assignment-page-with-url" class="section level1">
-<h1>Assignment Page with URL</h1>
-<div id="assignments-1" class="section level2">
-<h2>Assignments 1</h2>
-<p><a href="https://github.com/fred3936/r-collab.git" class="uri">https://github.com/fred3936/r-collab.git</a></p>
+<div id="lab-1" class="section level3">
+<h3>Lab 1</h3>
+<p><a href="https://github.com/therkildsen-class/ntres-6100-fred3936/blob/173325a733dba856d2942a54ce6748bbff13a2dc/lab1.html" class="uri">https://github.com/therkildsen-class/ntres-6100-fred3936/blob/173325a733dba856d2942a54ce6748bbff13a2dc/lab1.html</a></p>
 </div>
-<div id="assignment-2" class="section level2">
-<h2>Assignment 2</h2>
-<p><a href="https://github.com/fred3936/twitter_project.git" class="uri">https://github.com/fred3936/twitter_project.git</a></p>
+<div id="lab-2" class="section level3">
+<h3>Lab 2</h3>
+<p><a href="https://github.com/fred3936/Lab2_CV.git" class="uri">https://github.com/fred3936/Lab2_CV.git</a></p>
 </div>
-<div id="assignment-3" class="section level2">
-<h2>Assignment 3</h2>
-<p><a href="https://ls5340.github.io/problem_3/index.html" class="uri">https://ls5340.github.io/problem_3/index.html</a></p>
+<div id="lab-3" class="section level3">
+<h3>Lab 3</h3>
+<p><a href="https://fred3936.github.io/lab3/" class="uri">https://fred3936.github.io/lab3/</a></p>
 </div>
-<div id="assignment-4" class="section level2">
-<h2>Assignment 4</h2>
-<p><a href="https://github.com/fred3936/r-collab.git" class="uri">https://github.com/fred3936/r-collab.git</a></p>
-</div>
+<div id="lab-4" class="section level3">
+<h3>Lab 4</h3>
+<p><a href="https://github.com/fred3936/lab-4.git" class="uri">https://github.com/fred3936/lab-4.git</a></p>
 </div>
 
 
 
-</div>
-</div>
 
 </div>
 
@@ -398,35 +318,6 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
-<script>
-$(document).ready(function ()  {
-
-    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
-    $('.unlisted.unnumbered').addClass('toc-ignore')
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
