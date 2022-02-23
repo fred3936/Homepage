@@ -5,7 +5,7 @@ navbar:
     - text: "Home"
       href: index.html
     - text: "Assignments"
-      href: Journal.html
+      href: Assignment.html
     - text: "Labs"
-      href: Links.html
+      href: Lab.html
 output_dir: "docs"

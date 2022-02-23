@@ -1,0 +1,35 @@
+---
+title: " "
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    number_sections: false
+    toc_depth: 1
+    #code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
+```
+
+
+# Assignment Page with URL
+
+## Assignments 1
+https://github.com/fred3936/r-collab.git 
+
+## Assignment 2
+
+https://github.com/fred3936/twitter_project.git
+
+## Assignment 3
+
+https://ls5340.github.io/problem_3/index.html
+
+## Assignment 4
+https://github.com/fred3936/r-collab.git 
+
+
+

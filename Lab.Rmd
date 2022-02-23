@@ -1,0 +1,16 @@
+---
+title: "Lab Pages With URL"
+output: html_document
+---
+
+### Lab 1
+https://github.com/therkildsen-class/ntres-6100-fred3936/blob/173325a733dba856d2942a54ce6748bbff13a2dc/lab1.html
+
+### Lab 2
+https://github.com/fred3936/Lab2_CV.git
+
+### Lab 3
+https://fred3936.github.io/lab3/
+
+### Lab 4
+https://github.com/fred3936/lab-4.git
