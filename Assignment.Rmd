@@ -25,8 +25,18 @@ https://github.com/fred3936/r-collab.git
 https://github.com/fred3936/twitter_project.git
 
 ## Assignment 3
+<b>
+ - [dl2236's github account](https://fred3936.github.io/Homepage/index.html)
+<br>
 
-https://ls5340.github.io/problem_3/index.html
+<b>
+ - [bhm48's github account](https://github.com/ls5340/r-collab-.git)
+<br>
+
+<b>
+ - [ls929's github account](https://ls5340.github.io/problem_3/index.html)
+<br>
+
 
 ## Assignment 4
 https://github.com/fred3936/r-collab.git 
