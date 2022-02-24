@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Assignment_4</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Dongcheng's Homepage</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="Assignment.html">Assignments</a>
+</li>
+<li>
+  <a href="Lab.html">Labs</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Assignment_4</h1>
+
+</div>
+
+
+<div id="assignment-4" class="section level1">
+<h1>Assignment 4</h1>
+<div id="load-packages" class="section level2">
+<h2>Load packages</h2>
+<p>To start, load all the required packages with the following code. Install them if they are not installed yet.</p>
+<pre class="r"><code>library(tidyverse)
+library(knitr)
+library(ggplot2)</code></pre>
+<p><br></p>
+</div>
+<div id="exercise-1.-corruption-and-human-development" class="section level2">
+<h2>Exercise 1. Corruption and human development</h2>
+<p>This exercise explores a dataset containing the human development index (<code>HDI</code>) and corruption perception index (<code>CPI</code>) of 173 countries across 6 different regions around the world: Americas, Asia Pacific, Eastern Europe and Central Asia (<code>East EU Cemt</code>), Western Europe (<code>EU W. Europe</code>), Middle East and North Africa and Noth Africa (<code>MENA</code>), and Sub-Saharan Africa (<code>SSA</code>). (Note: the larger <code>CPI</code> is, the less corrupted the country is perceived to be.)</p>
+<p><br></p>
+<p>First, we load the data using the following code.</p>
+<pre class="r"><code>economist_data &lt;- read_csv(&quot;https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/EconomistData.csv&quot;)</code></pre>
+<p><br></p>
+<div id="show-the-first-few-rows-of-economist_data." class="section level4">
+<h4>1.1 Show the first few rows of <code>economist_data</code>.</h4>
+<pre class="r"><code>print(head(economist_data, 10))</code></pre>
+<pre><code>## # A tibble: 10 x 6
+##     ...1 Country     HDI.Rank   HDI   CPI Region           
+##    &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;            
+##  1     1 Afghanistan      172 0.398   1.5 Asia Pacific     
+##  2     2 Albania           70 0.739   3.1 East EU Cemt Asia
+##  3     3 Algeria           96 0.698   2.9 MENA             
+##  4     4 Angola           148 0.486   2   SSA              
+##  5     5 Argentina         45 0.797   3   Americas         
+##  6     6 Armenia           86 0.716   2.6 East EU Cemt Asia
+##  7     7 Australia          2 0.929   8.8 Asia Pacific     
+##  8     8 Austria           19 0.885   7.8 EU W. Europe     
+##  9     9 Azerbaijan        91 0.7     2.4 East EU Cemt Asia
+## 10    10 Bahamas           53 0.771   7.3 Americas</code></pre>
+<p><br></p>
+</div>
+<div id="expore-the-relationship-between-human-development-index-hdi-and-corruption-perception-index-cpi-with-a-scatter-plot-as-the-following." class="section level4">
+<h4>1.2 Expore the relationship between human development index (<code>HDI</code>) and corruption perception index (<code>CPI</code>) with a scatter plot as the following.</h4>
+<pre class="r"><code>ggplot(economist_data, aes(x=HDI, y=CPI))+
+  geom_point()</code></pre>
+<p><img src="Assignment_4_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><br></p>
+</div>
+<div id="make-the-color-of-all-points-in-the-previous-plot-red." class="section level4">
+<h4>1.3 Make the color of all points in the previous plot red.</h4>
+<pre class="r"><code>ggplot(economist_data, aes(x=HDI, y=CPI, color=&#39;red&#39;))+
+  geom_point()</code></pre>
+<p><img src="Assignment_4_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><br></p>
+</div>
+<div id="color-the-points-in-the-previous-plot-according-to-the-region-variable-and-set-the-size-of-points-to-2." class="section level4">
+<h4>1.4 Color the points in the previous plot according to the <code>Region</code> variable, and set the size of points to 2.</h4>
+<pre class="r"><code>ggplot(economist_data, aes(x=HDI, y=CPI, color=Region,size=2))+
+  geom_point()</code></pre>
+<p><img src="Assignment_4_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><br></p>
+</div>
+<div id="set-the-size-of-the-points-proportional-to-hdi.rank" class="section level4">
+<h4>1.5 Set the size of the points proportional to <code>HDI.Rank</code></h4>
+<pre class="r"><code>ggplot(economist_data, aes(x=HDI, y=CPI, color=Region, size=HDI.Rank))+
+geom_point()</code></pre>
+<p><img src="Assignment_4_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><br></p>
+</div>
+<div id="fit-a-smoothing-line-to-all-the-data-points-in-the-scatter-plot-from-excercise-1.4" class="section level4">
+<h4>1.6 Fit a <strong>smoothing line</strong> to <strong>all</strong> the data points in the scatter plot from Excercise 1.4</h4>
+<pre class="r"><code>ggplot(economist_data, aes(x=CPI, y=HDI, color=Region,size=2))+
+  geom_point()+
+  geom_smooth(aes(size=1,col=&quot;black&quot;),se=FALSE)</code></pre>
+<p><img src="Assignment_4_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><br></p>
+</div>
+<div id="fit-a-separate-straight-line-for-each-region-instead-and-turn-off-the-confidence-interval." class="section level4">
+<h4>1.7 Fit a separate <strong>straight line</strong> for <strong>each region</strong> instead, and turn off the confidence interval.</h4>
+<pre class="r"><code>ggplot(economist_data, aes(x=CPI, y=HDI, color=Region))+
+  geom_point()+
+  geom_smooth( method=lm, se=FALSE)</code></pre>
+<p><img src="Assignment_4_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><br></p>
+</div>
+<div id="building-on-top-of-the-previous-plot-show-each-region-in-a-different-facet." class="section level4">
+<h4>1.8 Building on top of the previous plot, show each <code>Region</code> in a different facet.</h4>
+<pre class="r"><code>ggplot(economist_data, aes(x=CPI, y=HDI, color=Region))+
+  geom_point()+
+  facet_wrap(~Region)+
+  geom_smooth(method=lm, se=FALSE)</code></pre>
+<p><img src="Assignment_4_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><br></p>
+</div>
+<div id="show-the-distribution-of-hdi-in-each-region-using-density-plot.-set-the-transparency-to-0.5" class="section level4">
+<h4>1.9 Show the distribution of <code>HDI</code> in each region using density plot. Set the transparency to 0.5</h4>
+<pre class="r"><code>ggplot(economist_data, aes(x=HDI,fill=Region)) + 
+  geom_density(alpha=0.5)</code></pre>
+<p><img src="Assignment_4_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><br></p>
+</div>
+<div id="show-the-distribution-of-hdi-in-each-region-using-histogram-and-facetting." class="section level4">
+<h4>1.10 Show the distribution of <code>HDI</code> in each region using histogram and facetting.</h4>
+<pre class="r"><code>ggplot(economist_data, aes(x=HDI,fill=Region)) + 
+  geom_histogram()+
+  facet_wrap( .~ Region)</code></pre>
+<p><img src="Assignment_4_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><br></p>
+</div>
+<div id="show-the-distribution-of-hdi-in-each-region-using-a-box-plot.-set-the-transparency-of-these-boxes-to-0.5-and-do-not-show-outlier-points-with-the-box-plot.-instead-show-all-data-points-for-each-country-in-the-same-plot.-hint-geom_jitter-or-position_jitter-might-be-useful." class="section level4">
+<h4>1.11 Show the distribution of <code>HDI</code> in each region using a box plot. Set the transparency of these boxes to 0.5 and do not show outlier points with the box plot. Instead, show all data points for each country in the same plot. (Hint: <code>geom_jitter()</code> or <code>position_jitter()</code> might be useful.)</h4>
+<pre class="r"><code>ggplot(economist_data, aes(x=Country,y=HDI,colour=Region)) + 
+  geom_boxplot(alpha=0.5,outlier.shape = NA) +
+  geom_point(position = position_jitter())</code></pre>
+<p><img src="Assignment_4_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><br></p>
+</div>
+<div id="show-the-count-of-countries-in-each-region-using-a-bar-plot." class="section level4">
+<h4>1.12 Show the count of countries in each region using a bar plot.</h4>
+<pre class="r"><code>ggplot(economist_data, aes(x = Region)) +
+  geom_bar()</code></pre>
+<p><img src="Assignment_4_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><br></p>
+</div>
+<div id="you-have-now-created-a-variety-of-different-plots-of-the-same-dataset.-which-of-your-plots-do-you-think-are-the-most-informative-describe-briefly-the-major-trends-that-you-see-in-the-data." class="section level4">
+<h4>1.13 You have now created a variety of different plots of the same dataset. Which of your plots do you think are the most informative? Describe briefly the major trends that you see in the data.</h4>
+<p>Answer: <em>Scatter plot is most useful if applying different colors or sizes based on the rankings or category. This type of plot can help better unsupervised learning with clustering data.</em>.</p>
+<p><br> <br></p>
+</div>
+</div>
+<div id="exercise-2.-theophylline-experiment" class="section level2">
+<h2>Exercise 2. Theophylline experiment</h2>
+<p>This exercise uses the <code>Theoph</code> data frame (comes with your R installation), which has 132 rows and 5 columns of data from an experiment on the pharmacokinetics of the anti-asthmatic drug theophylline. Twelve subjects were given oral doses of theophylline then serum concentrations were measured at 11 time points over the next 25 hours. You can learn more about this dataset by running <code>?Theoph</code></p>
+<p>Have a look at the data structure</p>
+<pre class="r"><code>str(Theoph)</code></pre>
+<pre><code>## Classes &#39;nfnGroupedData&#39;, &#39;nfGroupedData&#39;, &#39;groupedData&#39; and &#39;data.frame&#39;:   132 obs. of  5 variables:
+##  $ Subject: Ord.factor w/ 12 levels &quot;6&quot;&lt;&quot;7&quot;&lt;&quot;8&quot;&lt;&quot;11&quot;&lt;..: 11 11 11 11 11 11 11 11 11 11 ...
+##  $ Wt     : num  79.6 79.6 79.6 79.6 79.6 79.6 79.6 79.6 79.6 79.6 ...
+##  $ Dose   : num  4.02 4.02 4.02 4.02 4.02 4.02 4.02 4.02 4.02 4.02 ...
+##  $ Time   : num  0 0.25 0.57 1.12 2.02 ...
+##  $ conc   : num  0.74 2.84 6.57 10.5 9.66 8.58 8.36 7.47 6.89 5.94 ...
+##  - attr(*, &quot;formula&quot;)=Class &#39;formula&#39;  language conc ~ Time | Subject
+##   .. ..- attr(*, &quot;.Environment&quot;)=&lt;environment: R_EmptyEnv&gt; 
+##  - attr(*, &quot;labels&quot;)=List of 2
+##   ..$ x: chr &quot;Time since drug administration&quot;
+##   ..$ y: chr &quot;Theophylline concentration in serum&quot;
+##  - attr(*, &quot;units&quot;)=List of 2
+##   ..$ x: chr &quot;(hr)&quot;
+##   ..$ y: chr &quot;(mg/l)&quot;</code></pre>
+<p><br></p>
+<p>For the following exercise, <strong>transform the data as instructed</strong>. Try to use <code>tidyverse</code> functions even if you are more comfortable with base-R solutions. Show the <strong>first 6 lines</strong> of the transformed data in a table through RMarkdown <strong>using the kable() function</strong>, as shown above.</p>
+<div id="select-columns-that-contain-a-lower-case-t-in-the-theoph-dataset.-do-not-manually-list-all-the-columns-to-include." class="section level4">
+<h4>2.1 Select columns that contain a lower case “t” in the <code>Theoph</code> dataset. Do not manually list all the columns to include.</h4>
+<pre class="r"><code>Theoph &lt;- as_tibble(Theoph)
+kable(head(Theoph))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Subject</th>
+<th align="right">Wt</th>
+<th align="right">Dose</th>
+<th align="right">Time</th>
+<th align="right">conc</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1</td>
+<td align="right">79.6</td>
+<td align="right">4.02</td>
+<td align="right">0.00</td>
+<td align="right">0.74</td>
+</tr>
+<tr class="even">
+<td align="left">1</td>
+<td align="right">79.6</td>
+<td align="right">4.02</td>
+<td align="right">0.25</td>
+<td align="right">2.84</td>
+</tr>
+<tr class="odd">
+<td align="left">1</td>
+<td align="right">79.6</td>
+<td align="right">4.02</td>
+<td align="right">0.57</td>
+<td align="right">6.57</td>
+</tr>
+<tr class="even">
+<td align="left">1</td>
+<td align="right">79.6</td>
+<td align="right">4.02</td>
+<td align="right">1.12</td>
+<td align="right">10.50</td>
+</tr>
+<tr class="odd">
+<td align="left">1</td>
+<td align="right">79.6</td>
+<td align="right">4.02</td>
+<td align="right">2.02</td>
+<td align="right">9.66</td>
+</tr>
+<tr class="even">
+<td align="left">1</td>
+<td align="right">79.6</td>
+<td align="right">4.02</td>
+<td align="right">3.82</td>
+<td align="right">8.58</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>Theoph %&gt;% select(starts_with(&quot;t&quot;))</code></pre>
+<pre><code>## # A tibble: 132 x 1
+##     Time
+##    &lt;dbl&gt;
+##  1  0   
+##  2  0.25
+##  3  0.57
+##  4  1.12
+##  5  2.02
+##  6  3.82
+##  7  5.1 
+##  8  7.03
+##  9  9.05
+## 10 12.1 
+## # ... with 122 more rows</code></pre>
+<p><br></p>
+</div>
+<div id="rename-the-wt-column-to-weight-and-conc-column-to-concentration-in-the-theoph-dataset." class="section level4">
+<h4>2.2 Rename the <code>Wt</code> column to <code>Weight</code> and <code>conc</code> column to <code>Concentration</code> in the <code>Theoph</code> dataset.</h4>
+<pre class="r"><code>Theoph = rename(Theoph, Weight = Wt)
+Theoph = rename(Theoph, Concentration = conc )</code></pre>
+<p><br></p>
+</div>
+<div id="extract-the-dose-greater-than-4.5-and-time-greater-than-the-mean-time." class="section level4">
+<h4>2.3 Extract the <code>Dose</code> greater than 4.5 and <code>Time</code> greater than the mean <code>Time</code>.</h4>
+<pre class="r"><code>filter(Theoph, Dose &gt; 4.5 &amp; Time &gt; mean(Time))%&gt;% head()</code></pre>
+<pre><code>## # A tibble: 6 x 5
+##   Subject Weight  Dose  Time Concentration
+##   &lt;ord&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;         &lt;dbl&gt;
+## 1 3         70.5  4.53  7.07          5.3 
+## 2 3         70.5  4.53  9             4.9 
+## 3 3         70.5  4.53 12.2           3.7 
+## 4 3         70.5  4.53 24.2           1.05
+## 5 5         54.6  5.86  7.02          7.09
+## 6 5         54.6  5.86  9.1           5.9</code></pre>
+<p><br></p>
+</div>
+<div id="sort-the-theoph-dataset-by-wt-from-smallest-to-largest-and-secondarily-by-time-from-largest-to-smallest." class="section level4">
+<h4>2.4 Sort the <code>Theoph</code> dataset by <code>Wt</code> from smallest to largest and secondarily by Time from largest to smallest.</h4>
+<pre class="r"><code>Theoph %&gt;% arrange(Weight,desc(Time)) %&gt;%  head()</code></pre>
+<pre><code>## # A tibble: 6 x 5
+##   Subject Weight  Dose  Time Concentration
+##   &lt;ord&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;         &lt;dbl&gt;
+## 1 5         54.6  5.86 24.4           1.57
+## 2 5         54.6  5.86 12             4.37
+## 3 5         54.6  5.86  9.1           5.9 
+## 4 5         54.6  5.86  7.02          7.09
+## 5 5         54.6  5.86  5.02          7.56
+## 6 5         54.6  5.86  3.5           8.74</code></pre>
+<p><br></p>
+</div>
+<div id="create-a-new-column-called-quantity-that-equals-to-wt-x-dose-in-the-theoph-dataset.-this-will-tell-you-the-absolute-quantity-of-drug-administered-to-the-subject-in-mg.-replace-the-dose-variable-with-quantity." class="section level4">
+<h4>2.5 Create a new column called <code>Quantity</code> that equals to <code>Wt</code> x <code>Dose</code> in the <code>Theoph</code> dataset. This will tell you the absolute quantity of drug administered to the subject (in mg). Replace the <code>Dose</code> variable with <code>Quantity</code>.</h4>
+<pre class="r"><code>Theoph = mutate(Theoph, Quantity = Weight * Dose)
+Theoph %&gt;%select(Subject, Weight, Quantity,Time, Concentration) %&gt;% head()</code></pre>
+<pre><code>## # A tibble: 6 x 5
+##   Subject Weight Quantity  Time Concentration
+##   &lt;ord&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;         &lt;dbl&gt;
+## 1 1         79.6     320.  0             0.74
+## 2 1         79.6     320.  0.25          2.84
+## 3 1         79.6     320.  0.57          6.57
+## 4 1         79.6     320.  1.12         10.5 
+## 5 1         79.6     320.  2.02          9.66
+## 6 1         79.6     320.  3.82          8.58</code></pre>
+<p><br></p>
+</div>
+<div id="find-the-mean-conc-and-sum-of-the-dose-received-by-each-test-subject." class="section level4">
+<h4>2.6 Find the mean <code>conc</code> and sum of the <code>Dose</code> received by each test subject.</h4>
+<p>Show data for the 6 subjects with the smallest sum of <code>Dose</code> as below. <strong>Do not define new intermediate objects for this exercise; use pipes to chain together functions.</strong></p>
+<pre class="r"><code>Theoph %&gt;% 
+  group_by(Subject) %&gt;%
+  summarize(mean(Concentration), sum(Dose))%&gt;%  head()</code></pre>
+<pre><code>## # A tibble: 6 x 3
+##   Subject `mean(Concentration)` `sum(Dose)`
+##   &lt;ord&gt;                   &lt;dbl&gt;       &lt;dbl&gt;
+## 1 6                        3.53        44  
+## 2 7                        3.91        54.4
+## 3 8                        4.27        49.8
+## 4 11                       4.51        54.1
+## 5 3                        5.09        49.8
+## 6 2                        4.82        48.4</code></pre>
+<p><br></p>
+</div>
+</div>
+<div id="exercise-3.-unemployment-in-the-us-1967-2015-optional" class="section level2">
+<h2>Exercise 3. Unemployment in the US 1967-2015 (<strong>OPTIONAL</strong>)</h2>
+<p>This excercise uses the dataset <code>economics</code> from the ggplot2 package. It was produced from US economic time series data available from <a href="http://research.stlouisfed.org/fred2" class="uri">http://research.stlouisfed.org/fred2</a>. It descibes the number of unemployed persons (<code>unemploy</code>), among other variables, in the US from 1967 to 2015.</p>
+<pre class="r"><code>head(economics) %&gt;% kable()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">date</th>
+<th align="right">pce</th>
+<th align="right">pop</th>
+<th align="right">psavert</th>
+<th align="right">uempmed</th>
+<th align="right">unemploy</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1967-07-01</td>
+<td align="right">506.7</td>
+<td align="right">198712</td>
+<td align="right">12.6</td>
+<td align="right">4.5</td>
+<td align="right">2944</td>
+</tr>
+<tr class="even">
+<td align="left">1967-08-01</td>
+<td align="right">509.8</td>
+<td align="right">198911</td>
+<td align="right">12.6</td>
+<td align="right">4.7</td>
+<td align="right">2945</td>
+</tr>
+<tr class="odd">
+<td align="left">1967-09-01</td>
+<td align="right">515.6</td>
+<td align="right">199113</td>
+<td align="right">11.9</td>
+<td align="right">4.6</td>
+<td align="right">2958</td>
+</tr>
+<tr class="even">
+<td align="left">1967-10-01</td>
+<td align="right">512.2</td>
+<td align="right">199311</td>
+<td align="right">12.9</td>
+<td align="right">4.9</td>
+<td align="right">3143</td>
+</tr>
+<tr class="odd">
+<td align="left">1967-11-01</td>
+<td align="right">517.4</td>
+<td align="right">199498</td>
+<td align="right">12.8</td>
+<td align="right">4.7</td>
+<td align="right">3066</td>
+</tr>
+<tr class="even">
+<td align="left">1967-12-01</td>
+<td align="right">525.1</td>
+<td align="right">199657</td>
+<td align="right">11.8</td>
+<td align="right">4.8</td>
+<td align="right">3018</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th align="left">date</th>
+<th align="right">pce</th>
+<th align="right">pop</th>
+<th align="right">psavert</th>
+<th align="right">uempmed</th>
+<th align="right">unemploy</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1967-07-01</td>
+<td align="right">506.7</td>
+<td align="right">198712</td>
+<td align="right">12.6</td>
+<td align="right">4.5</td>
+<td align="right">2944</td>
+</tr>
+<tr class="even">
+<td align="left">1967-08-01</td>
+<td align="right">509.8</td>
+<td align="right">198911</td>
+<td align="right">12.6</td>
+<td align="right">4.7</td>
+<td align="right">2945</td>
+</tr>
+<tr class="odd">
+<td align="left">1967-09-01</td>
+<td align="right">515.6</td>
+<td align="right">199113</td>
+<td align="right">11.9</td>
+<td align="right">4.6</td>
+<td align="right">2958</td>
+</tr>
+<tr class="even">
+<td align="left">1967-10-01</td>
+<td align="right">512.2</td>
+<td align="right">199311</td>
+<td align="right">12.9</td>
+<td align="right">4.9</td>
+<td align="right">3143</td>
+</tr>
+<tr class="odd">
+<td align="left">1967-11-01</td>
+<td align="right">517.4</td>
+<td align="right">199498</td>
+<td align="right">12.8</td>
+<td align="right">4.7</td>
+<td align="right">3066</td>
+</tr>
+<tr class="even">
+<td align="left">1967-12-01</td>
+<td align="right">525.1</td>
+<td align="right">199657</td>
+<td align="right">11.8</td>
+<td align="right">4.8</td>
+<td align="right">3018</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<div id="plot-the-trend-in-number-of-unemployed-persons-unemploy-though-time-using-the-economics-dataset-shown-above.-and-for-this-question-only-hide-your-code-and-only-show-the-plot." class="section level4">
+<h4>3.1 Plot the trend in number of unemployed persons (<code>unemploy</code>) though time using the economics dataset shown above. And for this question only, <strong>hide your code and only show the plot</strong>.</h4>
+<pre class="r"><code>## Write your code here</code></pre>
+<p><br></p>
+</div>
+<div id="edit-the-plot-title-and-axis-labels-of-the-previous-plot-appropriately.-make-y-axis-start-from-0.-change-the-background-theme-to-what-is-shown-below.-hint-search-for-help-online-if-needed" class="section level4">
+<h4>3.2 Edit the plot title and axis labels of the previous plot appropriately. Make y axis start from 0. Change the background theme to what is shown below. (Hint: search for help online if needed)</h4>
+<pre class="r"><code>## Write your code here</code></pre>
+<p><br></p>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
