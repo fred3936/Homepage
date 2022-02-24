@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Lab_5</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Dongcheng's Homepage</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Assignments
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Assignment.html">Assignments</a>
+    </li>
+    <li>
+      <a href="Assignment_4.html">Assignment 4</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="Lab.html">Labs</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Lab_5</h1>
+
+</div>
+
+
+<pre class="r"><code># Load required packages
+library(tidyverse)
+library(knitr)
+
+# Read in the data
+titanic &lt;- read_csv(&quot;https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/Titanic.csv&quot;)
+
+# Let&#39;s look at the top 5 lines of the dataset
+head(titanic, n = 5) %&gt;%
+  kable()</code></pre>
+<table style="width:100%;">
+<colgroup>
+<col width="8%" />
+<col width="6%" />
+<col width="4%" />
+<col width="36%" />
+<col width="4%" />
+<col width="2%" />
+<col width="4%" />
+<col width="4%" />
+<col width="11%" />
+<col width="5%" />
+<col width="4%" />
+<col width="6%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right">PassengerId</th>
+<th align="right">Survived</th>
+<th align="right">Pclass</th>
+<th align="left">Name</th>
+<th align="left">Sex</th>
+<th align="right">Age</th>
+<th align="right">SibSp</th>
+<th align="right">Parch</th>
+<th align="left">Ticket</th>
+<th align="right">Fare</th>
+<th align="left">Cabin</th>
+<th align="left">Embarked</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="left">Braund, Mr. Owen Harris</td>
+<td align="left">male</td>
+<td align="right">22</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="left">A/5 21171</td>
+<td align="right">7.2500</td>
+<td align="left">NA</td>
+<td align="left">S</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="left">Cumings, Mrs. John Bradley (Florence Briggs Thayer)</td>
+<td align="left">female</td>
+<td align="right">38</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="left">PC 17599</td>
+<td align="right">71.2833</td>
+<td align="left">C85</td>
+<td align="left">C</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="left">Heikkinen, Miss. Laina</td>
+<td align="left">female</td>
+<td align="right">26</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="left">STON/O2. 3101282</td>
+<td align="right">7.9250</td>
+<td align="left">NA</td>
+<td align="left">S</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="left">Futrelle, Mrs. Jacques Heath (Lily May Peel)</td>
+<td align="left">female</td>
+<td align="right">35</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="left">113803</td>
+<td align="right">53.1000</td>
+<td align="left">C123</td>
+<td align="left">S</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="left">Allen, Mr. William Henry</td>
+<td align="left">male</td>
+<td align="right">35</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="left">373450</td>
+<td align="right">8.0500</td>
+<td align="left">NA</td>
+<td align="left">S</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>notes &lt;- read_csv(&quot;https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/Notes.csv&quot;)
+kable(notes)</code></pre>
+<table>
+<colgroup>
+<col width="11%" />
+<col width="42%" />
+<col width="46%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Variable</th>
+<th align="left">Definition</th>
+<th align="left">Key</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">PassengerId</td>
+<td align="left">Passenger ID</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">Survival</td>
+<td align="left">Survival</td>
+<td align="left">0 = No, 1 = Yes</td>
+</tr>
+<tr class="odd">
+<td align="left">Pclass</td>
+<td align="left">Ticket class</td>
+<td align="left">1 = 1st, 2 = 2nd, 3 = 3rd</td>
+</tr>
+<tr class="even">
+<td align="left">Name</td>
+<td align="left">Pasenger name</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">Sex</td>
+<td align="left">Sex</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">Age</td>
+<td align="left">Age in years</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">Sibsp</td>
+<td align="left"># of siblings / spouses aboard the Titanic</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">Parch</td>
+<td align="left"># of parents / children aboard the Titanic</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">Ticket</td>
+<td align="left">Ticket number</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">Fare</td>
+<td align="left">Passenger fare</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">Cabin</td>
+<td align="left">Cabin number</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">Embarked</td>
+<td align="left">Port of Embarkation</td>
+<td align="left">C = Cherbourg, Q = Queenstown, S = Southampton</td>
+</tr>
+</tbody>
+</table>
+<p><br> Question 1.1 How many of them do we have information for in this dataset?</p>
+<pre class="r"><code>nrow(titanic)</code></pre>
+<pre><code>## [1] 891</code></pre>
+<p><br></p>
+<p>Question 1.2 Of the people we have data for, how many of them survived and how many did not?</p>
+<pre class="r"><code>myTable &lt;- table(titanic$Survived)
+myTable </code></pre>
+<pre><code>## 
+##   0   1 
+## 549 342</code></pre>
+<pre class="r"><code>prop.table(myTable)</code></pre>
+<pre><code>## 
+##         0         1 
+## 0.6161616 0.3838384</code></pre>
+<pre class="r"><code>table(factor(titanic$Survived,  labels=c(&quot;died&quot;,&quot;survived&quot;)))</code></pre>
+<pre><code>## 
+##     died survived 
+##      549      342</code></pre>
+<pre class="r"><code>prop.table(table(factor(titanic$Survived,  labels=c(&quot;died&quot;,&quot;survived&quot;))))</code></pre>
+<pre><code>## 
+##      died  survived 
+## 0.6161616 0.3838384</code></pre>
+<pre class="r"><code>titanic %&gt;%
+  mutate(survived = ifelse(Survived==0, &quot;no&quot;, &quot;yes&quot;))%&gt;%
+  count(survived)%&gt;%
+  mutate(percentage = round(n/nrow(titanic)*100,2))</code></pre>
+<pre><code>## # A tibble: 2 x 3
+##   survived     n percentage
+##   &lt;chr&gt;    &lt;int&gt;      &lt;dbl&gt;
+## 1 no         549       61.6
+## 2 yes        342       38.4</code></pre>
+<p><br> ## question, what’s the difference with or without kable()?</p>
+<p><br></p>
+<pre class="r"><code># number of passengers surviving vs. dying
+survived_count &lt;- titanic %&gt;%
+  mutate(survived = ifelse(Survived==0, &quot;no&quot;, &quot;yes&quot;)) %&gt;%
+  count(survived) %&gt;%
+  mutate(percentage = round(n/nrow(titanic)*100,2))
+kable(survived_count)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">survived</th>
+<th align="right">n</th>
+<th align="right">percentage</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">no</td>
+<td align="right">549</td>
+<td align="right">61.62</td>
+</tr>
+<tr class="even">
+<td align="left">yes</td>
+<td align="right">342</td>
+<td align="right">38.38</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<pre class="r"><code># plotting
+titanic %&gt;%
+  mutate(survived = ifelse(Survived==0, &quot;no&quot;, &quot;yes&quot;)) %&gt;%
+  ggplot(aes(x = survived)) +
+  geom_bar(aes(fill = survived)) +
+  geom_label(data = survived_count, aes(label=str_c(percentage, &quot;%&quot;), y=n/2)) +
+  coord_flip()</code></pre>
+<p><img src="Lab_5_files/figure-html/unnamed-chunk-7-1.png" width="672" /> <br> ## Note: str_c() is used to add the percentage sign</p>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

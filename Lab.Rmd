@@ -14,3 +14,6 @@ https://fred3936.github.io/lab3/
 
 ### Lab 4
 https://github.com/fred3936/lab-4.git
+
+### Lab 5
+https://fred3936.github.io/Homepage/Lab_5.html
