@@ -5,7 +5,11 @@ navbar:
     - text: "Home"
       href: index.html
     - text: "Assignments"
-      href: Assignment.html
+      menu:
+        - text: "Assignments"
+          href: Assignment.html
+        - text: "Assignment 4"
+          href: Assignment_4.html
     - text: "Labs"
       href: Lab.html
 output_dir: "docs"
