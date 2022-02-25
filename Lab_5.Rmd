@@ -74,8 +74,91 @@ titanic %>%
   coord_flip()
 ```
 <br>
+
 ## Note: str_c() is used to add the percentage sign
 
 Question 2. How many passengers on the Titanic were males and how many were females? What do you find when you break it down by ticket class?
 
 
+```{r message=FALSE}
+myTable <- table(titanic$Sex)
+myTable 
+prop.table(myTable)
+
+table(factor(titanic$Sex,  labels=c("Female","Male")))
+
+prop.table(table(factor(titanic$Sex,  labels=c("Female","Male"))))
+```
+
+```{r message=FALSE}
+sex_count <- titanic %>%
+  count(Sex)
+kable(sex_count)
+```
+
+```{r message=FALSE}
+sex_count %>%
+  ggplot(aes(x=Sex,y=n))+
+  geom_col(aes(fill=Sex))+
+  xlab("Gender")+ylab("Count")+
+  geom_text(aes(label = n, y=n+30))##n+30 means the position move up?
+
+```
+
+
+```{r message=FALSE}
+sex_class_count <- titanic %>%
+  group_by(Sex, Pclass) %>%
+  count()
+kable(sex_class_count)
+```
+
+## again, kable means? difference between view, kable and table?
+
+```{r message=FALSE}
+sex_class_count %>%
+  ggplot(aes(x=Pclass,y=n))+
+  geom_col(aes(fill=Sex))
+```
+
+```{r message=FALSE}
+sex_class_count %>%
+  ggplot(aes(x=Sex,y=n))+
+  geom_col(aes(fill=Sex))+
+  geom_text(aes(label=n,y=n+20))+
+  facet_wrap(~Pclass)
+
+```
+##n+30 means the position move up?
+
+Question 3. How many passengers of each sex survived and how many of them did not? What is the survival rate for passengers of each sex?
+```{r message=FALSE}
+sex_survival_count <- titanic %>%
+  count(Sex, Survived) %>%
+  mutate(percentage = round(n/nrow(titanic)*100,2))
+kable(sex_survival_count)
+tb_survival_sex<-table(titanic$Survived, titanic$Sex)
+tb1<-prop.table(head(table(titanic$Survived, titanic$Sex),1))
+tb2<-prop.table(tail(table(titanic$Survived, titanic$Sex),1))
+tb_sur_sex_percentage<-rbind(tb1,tb2)
+tb_sur_sex_percentage
+tb_survival_sex
+
+```
+
+```{r message=FALSE}
+sex_survival_count %>%
+  ggplot(aes(x=Sex,y=n))+
+  geom_col(aes(fill=Sex),position = "dodge")+
+  geom_text(aes(label=n,y=n+30))+
+  facet_wrap(~Survived)
+```
+
+```{r message=FALSE}
+# number of passengers surviving vs. dying
+survived_count <- titanic %>%
+  mutate(survived = ifelse(Survived==0, "no", "yes")) %>%
+  count(survived) %>%
+  mutate(percentage = round(n/nrow(titanic)*100,2))
+kable(survived_count)
+```
