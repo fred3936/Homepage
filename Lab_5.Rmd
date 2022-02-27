@@ -141,8 +141,14 @@ tb_survival_sex<-table(titanic$Survived, titanic$Sex)
 tb1<-prop.table(head(table(titanic$Survived, titanic$Sex),1))
 tb2<-prop.table(tail(table(titanic$Survived, titanic$Sex),1))
 tb_sur_sex_percentage<-rbind(tb1,tb2)
-tb_sur_sex_percentage
-tb_survival_sex
+kable(tb_sur_sex_percentage)
+kable(tb_survival_sex)
+
+titanic %>%
+  mutate(Survived_yn =ifelse(Survived ==0,"no","yes")) %>%
+  group_by(Sex, Survived_yn) %>%
+  count() %>%
+  mutate(perc)
 
 ```
 
