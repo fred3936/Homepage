@@ -1,0 +1,26 @@
+---
+title: "Assignment_5"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+Assignment 5
+================
+
+
+## Load packages
+
+To start, load all the required packages with the following code.
+Install them if they are not installed yet.
+
+```{r message=FALSE}
+library(tidyverse)
+library(knitr)
+library(ggplot2)
+library(gapminder)
+```
+<br>
