@@ -4,7 +4,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 ```
 
 
@@ -17,10 +17,130 @@ Assignment 5
 To start, load all the required packages with the following code.
 Install them if they are not installed yet.
 
-```{r message=FALSE}
+```{r }
 library(tidyverse)
 library(knitr)
 library(ggplot2)
 library(gapminder)
 ```
 <br>
+
+
+```{r}
+housing <- read_csv("https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/landdata_states.csv")
+housing %>%
+  head() %>% 
+  kable() 
+```
+
+1.1 Washington DC was not assigned to a region in this dataset. According to the United States Census Bureau, however, DC is part of the South region. Here:
+- Change the region of DC to “South” (Hint: there are multiple ways to do this, but mutate() and ifelse() might be helpful)
+- Create a new tibble or regular dataframe consisting of this new updated region variable along with the original variables State, Date and Land.Value (and no others)
+- Pull out the records from DC in this new data frame. How many records are there from DC? Show the first 6 lines.
+
+```{r message=FALSE}
+housing$region <- ifelse(housing$State == "DC" & is.na (housing$region), "South", housing$region)
+
+housing %>%
+  filter(State == "DC") %>% 
+  select(region, State, Land.Value,Date) %>% 
+  head(6)  %>%
+  kable() 
+```
+
+##1.2
+
+```{r message=FALSE}
+housing<- housing %>% group_by(region,Date)%>%
+  mutate(mean_land_value = mean(Land.Value))
+
+housing %>% group_by(region,Date)%>%
+  mutate(mean_land_value = mean(Land.Value)) %>% 
+  select(region, Date, mean_land_value) %>% 
+  filter(region=="Midwest")%>% 
+  head(6)  %>%
+  arrange(mean_land_value) %>%
+  kable() 
+```
+
+##1.3
+
+```{r, message=FALSE}
+housing %>% 
+  ggplot(aes(x=Date,y=mean_land_value,color=region)) +
+  geom_line()
+```
+
+##2
+
+```{r, message=FALSE}
+gapminder%>%
+  head()%>%
+  kable()
+```
+
+##2.1
+```{r message=FALSE}
+gapminder %>%
+  filter(year==2007)%>%
+  ggplot(aes(x=gdpPercap,y=lifeExp))+
+  geom_point()
+```
+
+##2.2
+```{r message=FALSE}
+gapminder %>%
+  filter(year==2007)%>%
+  ggplot(aes(x=gdpPercap,y=lifeExp))+
+  geom_point()+
+  geom_smooth()
+```
+##2.3
+```{r message=FALSE}
+gapminder %>%
+  filter(year==2007)%>%
+  filter(continent!="Oceania")%>%
+  ggplot(aes(x=gdpPercap,y=lifeExp,col=continent))+
+  geom_point()+
+  geom_smooth( se=FALSE)
+```
+
+##2.4
+```{r message=FALSE}
+gapminder %>%
+  filter(year==2007)%>%
+  filter(continent!="Oceania")%>%
+  ggplot(aes(x=gdpPercap,y=lifeExp,col=continent))+
+  geom_point()+
+  geom_smooth()+
+  facet_wrap(.~continent)
+```
+
+##2.5
+```{r message=FALSE}
+gapminder %>%
+  ggplot(aes(x=year, y=lifeExp, col=continent, group=country))+
+  geom_line()+
+  facet_wrap(.~continent)
+```
+
+##2.6
+```{r message=FALSE}
+gapminder %>%
+  filter(continent=="Asia") %>%
+  head(6)  %>%
+  kable() 
+```
+
+##2.7
+
+## Historical event: Khmer_Rouge in Cambodia in around 1980 caused 2 million people died.
+```{r message=FALSE}
+gapminder %>%
+  filter(continent=="Asia") %>%
+  ggplot(aes(x=year, y=lifeExp))+
+  geom_line(col="blue")+
+  facet_wrap(.~country)
+```
+
+

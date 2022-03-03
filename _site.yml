@@ -10,6 +10,8 @@ navbar:
           href: Assignment.html
         - text: "Assignment 4"
           href: Assignment_4.html
+        - text: "Assignment 5"
+          href: Assignment_5.html
     - text: "Labs"
       menu:
         - text: "Labs"

@@ -301,6 +301,411 @@ library(knitr)
 library(ggplot2)
 library(gapminder)</code></pre>
 <p><br></p>
+<pre class="r"><code>housing &lt;- read_csv(&quot;https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/landdata_states.csv&quot;)
+housing %&gt;%
+  head() %&gt;% 
+  kable() </code></pre>
+<table style="width:100%;">
+<colgroup>
+<col width="5%" />
+<col width="5%" />
+<col width="6%" />
+<col width="9%" />
+<col width="12%" />
+<col width="9%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="4%" />
+<col width="4%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">State</th>
+<th align="left">region</th>
+<th align="right">Date</th>
+<th align="right">Home.Value</th>
+<th align="right">Structure.Cost</th>
+<th align="right">Land.Value</th>
+<th align="right">Land.Share..Pct.</th>
+<th align="right">Home.Price.Index</th>
+<th align="right">Land.Price.Index</th>
+<th align="right">Year</th>
+<th align="right">Qrtr</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">AK</td>
+<td align="left">West</td>
+<td align="right">2010.25</td>
+<td align="right">224952</td>
+<td align="right">160599</td>
+<td align="right">64352</td>
+<td align="right">28.6</td>
+<td align="right">1.481</td>
+<td align="right">1.552</td>
+<td align="right">2010</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">AK</td>
+<td align="left">West</td>
+<td align="right">2010.50</td>
+<td align="right">225511</td>
+<td align="right">160252</td>
+<td align="right">65259</td>
+<td align="right">28.9</td>
+<td align="right">1.484</td>
+<td align="right">1.576</td>
+<td align="right">2010</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">AK</td>
+<td align="left">West</td>
+<td align="right">2009.75</td>
+<td align="right">225820</td>
+<td align="right">163791</td>
+<td align="right">62029</td>
+<td align="right">27.5</td>
+<td align="right">1.486</td>
+<td align="right">1.494</td>
+<td align="right">2009</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">AK</td>
+<td align="left">West</td>
+<td align="right">2010.00</td>
+<td align="right">224994</td>
+<td align="right">161787</td>
+<td align="right">63207</td>
+<td align="right">28.1</td>
+<td align="right">1.481</td>
+<td align="right">1.524</td>
+<td align="right">2009</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">AK</td>
+<td align="left">West</td>
+<td align="right">2008.00</td>
+<td align="right">234590</td>
+<td align="right">155400</td>
+<td align="right">79190</td>
+<td align="right">33.8</td>
+<td align="right">1.544</td>
+<td align="right">1.885</td>
+<td align="right">2007</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">AK</td>
+<td align="left">West</td>
+<td align="right">2008.25</td>
+<td align="right">233714</td>
+<td align="right">157458</td>
+<td align="right">76256</td>
+<td align="right">32.6</td>
+<td align="right">1.538</td>
+<td align="right">1.817</td>
+<td align="right">2008</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+<p>1.1 Washington DC was not assigned to a region in this dataset. According to the United States Census Bureau, however, DC is part of the South region. Here: - Change the region of DC to “South” (Hint: there are multiple ways to do this, but mutate() and ifelse() might be helpful) - Create a new tibble or regular dataframe consisting of this new updated region variable along with the original variables State, Date and Land.Value (and no others) - Pull out the records from DC in this new data frame. How many records are there from DC? Show the first 6 lines.</p>
+<pre class="r"><code>housing$region &lt;- ifelse(housing$State == &quot;DC&quot; &amp; is.na (housing$region), &quot;South&quot;, housing$region)
+
+housing %&gt;%
+  filter(State == &quot;DC&quot;) %&gt;% 
+  select(region, State, Land.Value,Date) %&gt;% 
+  head(6)  %&gt;%
+  kable() </code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">region</th>
+<th align="left">State</th>
+<th align="right">Land.Value</th>
+<th align="right">Date</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">South</td>
+<td align="left">DC</td>
+<td align="right">290522</td>
+<td align="right">2003.00</td>
+</tr>
+<tr class="even">
+<td align="left">South</td>
+<td align="left">DC</td>
+<td align="right">305673</td>
+<td align="right">2003.25</td>
+</tr>
+<tr class="odd">
+<td align="left">South</td>
+<td align="left">DC</td>
+<td align="right">323078</td>
+<td align="right">2003.50</td>
+</tr>
+<tr class="even">
+<td align="left">South</td>
+<td align="left">DC</td>
+<td align="right">342010</td>
+<td align="right">2003.75</td>
+</tr>
+<tr class="odd">
+<td align="left">South</td>
+<td align="left">DC</td>
+<td align="right">361999</td>
+<td align="right">2004.00</td>
+</tr>
+<tr class="even">
+<td align="left">South</td>
+<td align="left">DC</td>
+<td align="right">382792</td>
+<td align="right">2004.25</td>
+</tr>
+</tbody>
+</table>
+<p>##1.2</p>
+<pre class="r"><code>housing&lt;- housing %&gt;% group_by(region,Date)%&gt;%
+  mutate(mean_land_value = mean(Land.Value))
+
+housing %&gt;% group_by(region,Date)%&gt;%
+  mutate(mean_land_value = mean(Land.Value)) %&gt;% 
+  select(region, Date, mean_land_value) %&gt;% 
+  filter(region==&quot;Midwest&quot;)%&gt;% 
+  head(6)  %&gt;%
+  arrange(mean_land_value) %&gt;%
+  kable() </code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">region</th>
+<th align="right">Date</th>
+<th align="right">mean_land_value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Midwest</td>
+<td align="right">1975.25</td>
+<td align="right">2452.167</td>
+</tr>
+<tr class="even">
+<td align="left">Midwest</td>
+<td align="right">1975.50</td>
+<td align="right">2498.917</td>
+</tr>
+<tr class="odd">
+<td align="left">Midwest</td>
+<td align="right">1975.75</td>
+<td align="right">2608.167</td>
+</tr>
+<tr class="even">
+<td align="left">Midwest</td>
+<td align="right">1976.00</td>
+<td align="right">2780.000</td>
+</tr>
+<tr class="odd">
+<td align="left">Midwest</td>
+<td align="right">1976.25</td>
+<td align="right">2967.333</td>
+</tr>
+<tr class="even">
+<td align="left">Midwest</td>
+<td align="right">1976.50</td>
+<td align="right">3212.833</td>
+</tr>
+</tbody>
+</table>
+<p>##1.3</p>
+<pre class="r"><code>housing %&gt;% 
+  ggplot(aes(x=Date,y=mean_land_value,color=region)) +
+  geom_line()</code></pre>
+<p><img src="Assignment_5_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>##2</p>
+<pre class="r"><code>gapminder%&gt;%
+  head()%&gt;%
+  kable()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">country</th>
+<th align="left">continent</th>
+<th align="right">year</th>
+<th align="right">lifeExp</th>
+<th align="right">pop</th>
+<th align="right">gdpPercap</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Afghanistan</td>
+<td align="left">Asia</td>
+<td align="right">1952</td>
+<td align="right">28.801</td>
+<td align="right">8425333</td>
+<td align="right">779.4453</td>
+</tr>
+<tr class="even">
+<td align="left">Afghanistan</td>
+<td align="left">Asia</td>
+<td align="right">1957</td>
+<td align="right">30.332</td>
+<td align="right">9240934</td>
+<td align="right">820.8530</td>
+</tr>
+<tr class="odd">
+<td align="left">Afghanistan</td>
+<td align="left">Asia</td>
+<td align="right">1962</td>
+<td align="right">31.997</td>
+<td align="right">10267083</td>
+<td align="right">853.1007</td>
+</tr>
+<tr class="even">
+<td align="left">Afghanistan</td>
+<td align="left">Asia</td>
+<td align="right">1967</td>
+<td align="right">34.020</td>
+<td align="right">11537966</td>
+<td align="right">836.1971</td>
+</tr>
+<tr class="odd">
+<td align="left">Afghanistan</td>
+<td align="left">Asia</td>
+<td align="right">1972</td>
+<td align="right">36.088</td>
+<td align="right">13079460</td>
+<td align="right">739.9811</td>
+</tr>
+<tr class="even">
+<td align="left">Afghanistan</td>
+<td align="left">Asia</td>
+<td align="right">1977</td>
+<td align="right">38.438</td>
+<td align="right">14880372</td>
+<td align="right">786.1134</td>
+</tr>
+</tbody>
+</table>
+<p>##2.1</p>
+<pre class="r"><code>gapminder %&gt;%
+  filter(year==2007)%&gt;%
+  ggplot(aes(x=gdpPercap,y=lifeExp))+
+  geom_point()</code></pre>
+<p><img src="Assignment_5_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>##2.2</p>
+<pre class="r"><code>gapminder %&gt;%
+  filter(year==2007)%&gt;%
+  ggplot(aes(x=gdpPercap,y=lifeExp))+
+  geom_point()+
+  geom_smooth()</code></pre>
+<p><img src="Assignment_5_files/figure-html/unnamed-chunk-8-1.png" width="672" /> ##2.3</p>
+<pre class="r"><code>gapminder %&gt;%
+  filter(year==2007)%&gt;%
+  filter(continent!=&quot;Oceania&quot;)%&gt;%
+  ggplot(aes(x=gdpPercap,y=lifeExp,col=continent))+
+  geom_point()+
+  geom_smooth( se=FALSE)</code></pre>
+<p><img src="Assignment_5_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>##2.4</p>
+<pre class="r"><code>gapminder %&gt;%
+  filter(year==2007)%&gt;%
+  filter(continent!=&quot;Oceania&quot;)%&gt;%
+  ggplot(aes(x=gdpPercap,y=lifeExp,col=continent))+
+  geom_point()+
+  geom_smooth()+
+  facet_wrap(.~continent)</code></pre>
+<p><img src="Assignment_5_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>##2.5</p>
+<pre class="r"><code>gapminder %&gt;%
+  ggplot(aes(x=year, y=lifeExp, col=continent, group=country))+
+  geom_line()+
+  facet_wrap(.~continent)</code></pre>
+<p><img src="Assignment_5_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>##2.6</p>
+<pre class="r"><code>gapminder %&gt;%
+  filter(continent==&quot;Asia&quot;) %&gt;%
+  head(6)  %&gt;%
+  kable() </code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">country</th>
+<th align="left">continent</th>
+<th align="right">year</th>
+<th align="right">lifeExp</th>
+<th align="right">pop</th>
+<th align="right">gdpPercap</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Afghanistan</td>
+<td align="left">Asia</td>
+<td align="right">1952</td>
+<td align="right">28.801</td>
+<td align="right">8425333</td>
+<td align="right">779.4453</td>
+</tr>
+<tr class="even">
+<td align="left">Afghanistan</td>
+<td align="left">Asia</td>
+<td align="right">1957</td>
+<td align="right">30.332</td>
+<td align="right">9240934</td>
+<td align="right">820.8530</td>
+</tr>
+<tr class="odd">
+<td align="left">Afghanistan</td>
+<td align="left">Asia</td>
+<td align="right">1962</td>
+<td align="right">31.997</td>
+<td align="right">10267083</td>
+<td align="right">853.1007</td>
+</tr>
+<tr class="even">
+<td align="left">Afghanistan</td>
+<td align="left">Asia</td>
+<td align="right">1967</td>
+<td align="right">34.020</td>
+<td align="right">11537966</td>
+<td align="right">836.1971</td>
+</tr>
+<tr class="odd">
+<td align="left">Afghanistan</td>
+<td align="left">Asia</td>
+<td align="right">1972</td>
+<td align="right">36.088</td>
+<td align="right">13079460</td>
+<td align="right">739.9811</td>
+</tr>
+<tr class="even">
+<td align="left">Afghanistan</td>
+<td align="left">Asia</td>
+<td align="right">1977</td>
+<td align="right">38.438</td>
+<td align="right">14880372</td>
+<td align="right">786.1134</td>
+</tr>
+</tbody>
+</table>
+<p>##2.7</p>
+</div>
+<div id="historical-event-khmer_rouge-in-cambodia-in-around-1980-caused-2-million-people-died." class="section level2">
+<h2>Historical event: Khmer_Rouge in Cambodia in around 1980 caused 2 million people died.</h2>
+<pre class="r"><code>gapminder %&gt;%
+  filter(continent==&quot;Asia&quot;) %&gt;%
+  ggplot(aes(x=year, y=lifeExp))+
+  geom_line(col=&quot;blue&quot;)+
+  facet_wrap(.~country)</code></pre>
+<p><img src="Assignment_5_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 </div>
 </div>
 
