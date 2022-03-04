@@ -498,27 +498,114 @@ kable(head(Theoph))</code></pre>
 </tr>
 </tbody>
 </table>
-<pre class="r"><code>Theoph %&gt;% select(starts_with(&quot;t&quot;))</code></pre>
-<pre><code>## # A tibble: 132 x 1
-##     Time
-##    &lt;dbl&gt;
-##  1  0   
-##  2  0.25
-##  3  0.57
-##  4  1.12
-##  5  2.02
-##  6  3.82
-##  7  5.1 
-##  8  7.03
-##  9  9.05
-## 10 12.1 
-## # ... with 122 more rows</code></pre>
+<pre class="r"><code>Theoph %&gt;% select(contains(&quot;t&quot;))%&gt;%
+  head()%&gt;%
+  kable()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Subject</th>
+<th align="right">Wt</th>
+<th align="right">Time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1</td>
+<td align="right">79.6</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="even">
+<td align="left">1</td>
+<td align="right">79.6</td>
+<td align="right">0.25</td>
+</tr>
+<tr class="odd">
+<td align="left">1</td>
+<td align="right">79.6</td>
+<td align="right">0.57</td>
+</tr>
+<tr class="even">
+<td align="left">1</td>
+<td align="right">79.6</td>
+<td align="right">1.12</td>
+</tr>
+<tr class="odd">
+<td align="left">1</td>
+<td align="right">79.6</td>
+<td align="right">2.02</td>
+</tr>
+<tr class="even">
+<td align="left">1</td>
+<td align="right">79.6</td>
+<td align="right">3.82</td>
+</tr>
+</tbody>
+</table>
 <p><br></p>
 </div>
 <div id="rename-the-wt-column-to-weight-and-conc-column-to-concentration-in-the-theoph-dataset." class="section level4">
 <h4>2.2 Rename the <code>Wt</code> column to <code>Weight</code> and <code>conc</code> column to <code>Concentration</code> in the <code>Theoph</code> dataset.</h4>
 <pre class="r"><code>Theoph = rename(Theoph, Weight = Wt)
 Theoph = rename(Theoph, Concentration = conc )</code></pre>
+<pre class="r"><code>Theoph %&gt;% 
+  head()%&gt;%
+  kable()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Subject</th>
+<th align="right">Weight</th>
+<th align="right">Dose</th>
+<th align="right">Time</th>
+<th align="right">Concentration</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1</td>
+<td align="right">79.6</td>
+<td align="right">4.02</td>
+<td align="right">0.00</td>
+<td align="right">0.74</td>
+</tr>
+<tr class="even">
+<td align="left">1</td>
+<td align="right">79.6</td>
+<td align="right">4.02</td>
+<td align="right">0.25</td>
+<td align="right">2.84</td>
+</tr>
+<tr class="odd">
+<td align="left">1</td>
+<td align="right">79.6</td>
+<td align="right">4.02</td>
+<td align="right">0.57</td>
+<td align="right">6.57</td>
+</tr>
+<tr class="even">
+<td align="left">1</td>
+<td align="right">79.6</td>
+<td align="right">4.02</td>
+<td align="right">1.12</td>
+<td align="right">10.50</td>
+</tr>
+<tr class="odd">
+<td align="left">1</td>
+<td align="right">79.6</td>
+<td align="right">4.02</td>
+<td align="right">2.02</td>
+<td align="right">9.66</td>
+</tr>
+<tr class="even">
+<td align="left">1</td>
+<td align="right">79.6</td>
+<td align="right">4.02</td>
+<td align="right">3.82</td>
+<td align="right">8.58</td>
+</tr>
+</tbody>
+</table>
 <p><br></p>
 </div>
 <div id="extract-the-dose-greater-than-4.5-and-time-greater-than-the-mean-time." class="section level4">

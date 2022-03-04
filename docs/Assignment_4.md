@@ -247,23 +247,19 @@ kable(head(Theoph))
 | 1       | 79.6 | 4.02 | 3.82 |  8.58 |
 
 ``` r
-Theoph %>% select(starts_with("t"))
+Theoph %>% select(contains("t"))%>%
+  head()%>%
+  kable()
 ```
 
-    ## # A tibble: 132 x 1
-    ##     Time
-    ##    <dbl>
-    ##  1  0   
-    ##  2  0.25
-    ##  3  0.57
-    ##  4  1.12
-    ##  5  2.02
-    ##  6  3.82
-    ##  7  5.1 
-    ##  8  7.03
-    ##  9  9.05
-    ## 10 12.1 
-    ## # ... with 122 more rows
+| Subject |   Wt | Time |
+|:--------|-----:|-----:|
+| 1       | 79.6 | 0.00 |
+| 1       | 79.6 | 0.25 |
+| 1       | 79.6 | 0.57 |
+| 1       | 79.6 | 1.12 |
+| 1       | 79.6 | 2.02 |
+| 1       | 79.6 | 3.82 |
 
 <br>
 
@@ -273,6 +269,21 @@ Theoph %>% select(starts_with("t"))
 Theoph = rename(Theoph, Weight = Wt)
 Theoph = rename(Theoph, Concentration = conc )
 ```
+
+``` r
+Theoph %>% 
+  head()%>%
+  kable()
+```
+
+| Subject | Weight | Dose | Time | Concentration |
+|:--------|-------:|-----:|-----:|--------------:|
+| 1       |   79.6 | 4.02 | 0.00 |          0.74 |
+| 1       |   79.6 | 4.02 | 0.25 |          2.84 |
+| 1       |   79.6 | 4.02 | 0.57 |          6.57 |
+| 1       |   79.6 | 4.02 | 1.12 |         10.50 |
+| 1       |   79.6 | 4.02 | 2.02 |          9.66 |
+| 1       |   79.6 | 4.02 | 3.82 |          8.58 |
 
 <br>
 

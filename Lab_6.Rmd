@@ -1,0 +1,49 @@
+---
+title: "Lab_6"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+```
+
+## Load packages
+
+```{r}
+# Load required packages
+library(tidyverse)
+library(knitr)
+library(dplyr)
+library(ggplot2)
+
+# Read in the data
+whales <- read_csv("https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/main/datasets/whales.csv")
+whales %>% head() %>% kable()
+```
+
+
+```{r}
+whales_long <- whales %>%
+  pivot_longer(2:9, names_to = "species", values_to = "info")
+whales_long %>% head() %>% kable()
+```
+
+```{r}
+whales_clean <- whales_long[complete.cases(whales_long[ , c("info")]), ] # Omit NAs by columns
+whales_clean 
+```
+
+```{r}
+whales_clean <- whales_long %>%
+  filter(!is.na(info))
+whales_clean %>% head() %>% kable()
+```
+```{r}
+whales_clean <- whales_long %>%
+  filter(!is.na(info))
+whales_clean %>% head() %>% kable()
+whales_clean %>%
+  mutate(director = strsplit(as.character(director), ",")) %>%
+```
+
+

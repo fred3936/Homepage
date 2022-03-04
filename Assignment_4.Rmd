@@ -190,16 +190,23 @@ through RMarkdown **using the kable() function**, as shown above.
 ``` {r message=FALSE}
 Theoph <- as_tibble(Theoph)
 kable(head(Theoph))
-Theoph %>% select(starts_with("t"))
+Theoph %>% select(contains("t"))%>%
+  head()%>%
+  kable()
 ```
 
 <br>
 
 #### 2.2 Rename the `Wt` column to `Weight` and `conc` column to `Concentration` in the `Theoph` dataset.
-
-``` {r message=FALSE}
+```{r message=FALSE}
 Theoph = rename(Theoph, Weight = Wt)
 Theoph = rename(Theoph, Concentration = conc )
+```
+
+``` {r message=FALSE, echo=TRUE}
+Theoph %>% 
+  head()%>%
+  kable()
 ```
 
 <br>
