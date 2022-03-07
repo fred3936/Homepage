@@ -11,7 +11,7 @@
 
 
 
-<title>Lab Pages With URL</title>
+<title>Lab_6</title>
 
 <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -275,9 +275,6 @@ $(document).ready(function () {
     <li>
       <a href="Lab_5.html">Lab 5</a>
     </li>
-    <li>
-      <a href="Lab_6.html">Lab 6</a>
-    </li>
   </ul>
 </li>
       </ul>
@@ -292,34 +289,269 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Lab Pages With URL</h1>
+<h1 class="title toc-ignore">Lab_6</h1>
 
 </div>
 
 
-<div id="lab-1" class="section level3">
-<h3>Lab 1</h3>
-<p><a href="https://github.com/therkildsen-class/ntres-6100-fred3936/blob/173325a733dba856d2942a54ce6748bbff13a2dc/lab1.html" class="uri">https://github.com/therkildsen-class/ntres-6100-fred3936/blob/173325a733dba856d2942a54ce6748bbff13a2dc/lab1.html</a></p>
-</div>
-<div id="lab-2" class="section level3">
-<h3>Lab 2</h3>
-<p><a href="https://github.com/fred3936/Lab2_CV.git" class="uri">https://github.com/fred3936/Lab2_CV.git</a></p>
-</div>
-<div id="lab-3" class="section level3">
-<h3>Lab 3</h3>
-<p><a href="https://fred3936.github.io/lab3/" class="uri">https://fred3936.github.io/lab3/</a></p>
-</div>
-<div id="lab-4" class="section level3">
-<h3>Lab 4</h3>
-<p><a href="https://github.com/fred3936/lab-4.git" class="uri">https://github.com/fred3936/lab-4.git</a></p>
-</div>
-<div id="lab-5" class="section level3">
-<h3>Lab 5</h3>
-<p><a href="https://fred3936.github.io/Homepage/Lab_5.html" class="uri">https://fred3936.github.io/Homepage/Lab_5.html</a></p>
-</div>
-<div id="lab-6" class="section level3">
-<h3>Lab 6</h3>
-<p><a href="https://fred3936.github.io/Homepage/Lab_6.html" class="uri">https://fred3936.github.io/Homepage/Lab_6.html</a></p>
+<div id="load-packages" class="section level2">
+<h2>Load packages</h2>
+<pre class="r"><code># Load required packages
+library(tidyverse)
+library(knitr)
+library(dplyr)
+library(ggplot2)
+
+# Read in the data
+whales &lt;- read_csv(&quot;https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/main/datasets/whales.csv&quot;)
+whales %&gt;% head() %&gt;% kable()</code></pre>
+<table>
+<colgroup>
+<col width="4%" />
+<col width="11%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="12%" />
+<col width="6%" />
+<col width="12%" />
+<col width="12%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right">observer</th>
+<th align="left">blue</th>
+<th align="left">humpback</th>
+<th align="left">southern_right</th>
+<th align="left">sei</th>
+<th align="left">fin</th>
+<th align="left">killer_whale</th>
+<th align="left">bowhead</th>
+<th align="left">grey</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">1/20/15, death, , Indian</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">8/9/11, injury, , indian</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">NA</td>
+<td align="left">8/12/15, death, 50, atlantic</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">8/2/13, death, 76, arctic</td>
+<td align="left">NA</td>
+<td align="left">6/24/13, injury, 30, artic</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">7/14/13, injury, 47, pacific</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="left">NA</td>
+<td align="left">3/4/12, death, 56, pacific</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">5/24/16, death, , pacific</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">6/14/12, injury, 52, indian</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="left">5/2/16, , 80, pacific</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>whales_long &lt;- whales %&gt;%
+  pivot_longer(2:9, names_to = &quot;species&quot;, values_to = &quot;info&quot;)
+whales_long %&gt;% head() %&gt;% kable()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">observer</th>
+<th align="left">species</th>
+<th align="left">info</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">blue</td>
+<td align="left">1/20/15, death, , Indian</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="left">humpback</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">southern_right</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="left">sei</td>
+<td align="left">8/9/11, injury, , indian</td>
+</tr>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">fin</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="left">killer_whale</td>
+<td align="left">NA</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>whales_clean &lt;- whales_long %&gt;%
+  filter(!is.na(info))
+whales_clean %&gt;% head() %&gt;% kable()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">observer</th>
+<th align="left">species</th>
+<th align="left">info</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">blue</td>
+<td align="left">1/20/15, death, , Indian</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="left">sei</td>
+<td align="left">8/9/11, injury, , indian</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="left">humpback</td>
+<td align="left">8/12/15, death, 50, atlantic</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">fin</td>
+<td align="left">8/2/13, death, 76, arctic</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="left">bowhead</td>
+<td align="left">6/24/13, injury, 30, artic</td>
+</tr>
+<tr class="even">
+<td align="right">3</td>
+<td align="left">southern_right</td>
+<td align="left">7/14/13, injury, 47, pacific</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>whales_split &lt;- whales_clean %&gt;%
+  separate(info, c(&quot;date&quot;, &quot;outcome&quot;, &quot;size&quot;, &quot;ocean&quot;), &quot;,&quot;)
+whales_split %&gt;% head() %&gt;% kable()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">observer</th>
+<th align="left">species</th>
+<th align="left">date</th>
+<th align="left">outcome</th>
+<th align="left">size</th>
+<th align="left">ocean</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">blue</td>
+<td align="left">1/20/15</td>
+<td align="left">death</td>
+<td align="left"></td>
+<td align="left">Indian</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="left">sei</td>
+<td align="left">8/9/11</td>
+<td align="left">injury</td>
+<td align="left"></td>
+<td align="left">indian</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="left">humpback</td>
+<td align="left">8/12/15</td>
+<td align="left">death</td>
+<td align="left">50</td>
+<td align="left">atlantic</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">fin</td>
+<td align="left">8/2/13</td>
+<td align="left">death</td>
+<td align="left">76</td>
+<td align="left">arctic</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="left">bowhead</td>
+<td align="left">6/24/13</td>
+<td align="left">injury</td>
+<td align="left">30</td>
+<td align="left">artic</td>
+</tr>
+<tr class="even">
+<td align="right">3</td>
+<td align="left">southern_right</td>
+<td align="left">7/14/13</td>
+<td align="left">injury</td>
+<td align="left">47</td>
+<td align="left">pacific</td>
+</tr>
+</tbody>
+</table>
 </div>
 
 

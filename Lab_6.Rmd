@@ -21,7 +21,6 @@ whales <- read_csv("https://raw.githubusercontent.com/nt246/NTRES-6100-data-scie
 whales %>% head() %>% kable()
 ```
 
-
 ```{r}
 whales_long <- whales %>%
   pivot_longer(2:9, names_to = "species", values_to = "info")
@@ -29,21 +28,14 @@ whales_long %>% head() %>% kable()
 ```
 
 ```{r}
-whales_clean <- whales_long[complete.cases(whales_long[ , c("info")]), ] # Omit NAs by columns
-whales_clean 
-```
-
-```{r}
 whales_clean <- whales_long %>%
   filter(!is.na(info))
 whales_clean %>% head() %>% kable()
 ```
-```{r}
-whales_clean <- whales_long %>%
-  filter(!is.na(info))
-whales_clean %>% head() %>% kable()
-whales_clean %>%
-  mutate(director = strsplit(as.character(director), ",")) %>%
-```
 
+```{r}
+whales_split <- whales_clean %>%
+  separate(info, c("date", "outcome", "size", "ocean"), ",")
+whales_split %>% head() %>% kable()
+```
 
