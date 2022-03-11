@@ -257,6 +257,12 @@ $(document).ready(function () {
     <li>
       <a href="Assignment_4.html">Assignment 4</a>
     </li>
+    <li>
+      <a href="Assignment_5.html">Assignment 5</a>
+    </li>
+    <li>
+      <a href="Assignment_6.html">Assignment 6</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -271,6 +277,9 @@ $(document).ready(function () {
     </li>
     <li>
       <a href="Lab_5.html">Lab 5</a>
+    </li>
+    <li>
+      <a href="Lab_6.html">Lab 6</a>
     </li>
   </ul>
 </li>
@@ -660,63 +669,74 @@ kable(sex_class_count)</code></pre>
 <p>Question 3. How many passengers of each sex survived and how many of them did not? What is the survival rate for passengers of each sex?</p>
 <pre class="r"><code>sex_survival_count &lt;- titanic %&gt;%
   count(Sex, Survived) %&gt;%
-  mutate(percentage = round(n/nrow(titanic)*100,2))
-kable(sex_survival_count)</code></pre>
+  mutate(percentage = round(n/nrow(titanic)*100,2))%&gt;%
+kable()
+tb_survival_sex&lt;-table(titanic$Survived, titanic$Sex)
+tb1&lt;-prop.table(head(table(titanic$Survived, titanic$Sex),1))
+tb2&lt;-prop.table(tail(table(titanic$Survived, titanic$Sex),1))
+tb_sur_sex_percentage&lt;-rbind(tb1,tb2)
+kable(tb_sur_sex_percentage)</code></pre>
 <table>
 <thead>
 <tr class="header">
-<th align="left">Sex</th>
-<th align="right">Survived</th>
-<th align="right">n</th>
-<th align="right">percentage</th>
+<th align="left"></th>
+<th align="right">female</th>
+<th align="right">male</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">female</td>
-<td align="right">0</td>
-<td align="right">81</td>
-<td align="right">9.09</td>
+<td align="left">0</td>
+<td align="right">0.1475410</td>
+<td align="right">0.8524590</td>
 </tr>
 <tr class="even">
-<td align="left">female</td>
-<td align="right">1</td>
-<td align="right">233</td>
-<td align="right">26.15</td>
-</tr>
-<tr class="odd">
-<td align="left">male</td>
-<td align="right">0</td>
-<td align="right">468</td>
-<td align="right">52.53</td>
-</tr>
-<tr class="even">
-<td align="left">male</td>
-<td align="right">1</td>
-<td align="right">109</td>
-<td align="right">12.23</td>
+<td align="left">1</td>
+<td align="right">0.6812865</td>
+<td align="right">0.3187135</td>
 </tr>
 </tbody>
 </table>
-<pre class="r"><code>tb_survival_sex&lt;-table(titanic$Survived, titanic$Sex)
-tb1&lt;-prop.table(head(table(titanic$Survived, titanic$Sex),1))
-tb2&lt;-prop.table(tail(table(titanic$Survived, titanic$Sex),1))
-tb_sur_sex_percentage&lt;-rbind(tb1,tb2)
-tb_sur_sex_percentage</code></pre>
-<pre><code>##      female      male
-## 0 0.1475410 0.8524590
-## 1 0.6812865 0.3187135</code></pre>
-<pre class="r"><code>tb_survival_sex</code></pre>
-<pre><code>##    
-##     female male
-##   0     81  468
-##   1    233  109</code></pre>
-<pre class="r"><code>sex_survival_count %&gt;%
-  ggplot(aes(x=Sex,y=n))+
-  geom_col(aes(fill=Sex),position = &quot;dodge&quot;)+
-  geom_text(aes(label=n,y=n+30))+
-  facet_wrap(~Survived)</code></pre>
-<p><img src="Lab_5_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<pre class="r"><code>kable(tb_survival_sex)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">female</th>
+<th align="right">male</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">0</td>
+<td align="right">81</td>
+<td align="right">468</td>
+</tr>
+<tr class="even">
+<td align="left">1</td>
+<td align="right">233</td>
+<td align="right">109</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>titanic %&gt;%
+  mutate(Survived_yn =ifelse(Survived ==0,&quot;no&quot;,&quot;yes&quot;)) %&gt;%
+  group_by(Sex, Survived_yn) %&gt;%
+  count() %&gt;%
+  mutate()</code></pre>
+<pre><code>## # A tibble: 4 x 3
+## # Groups:   Sex, Survived_yn [4]
+##   Sex    Survived_yn     n
+##   &lt;chr&gt;  &lt;chr&gt;       &lt;int&gt;
+## 1 female no             81
+## 2 female yes           233
+## 3 male   no            468
+## 4 male   yes           109</code></pre>
+<pre class="r"><code>#sex_survival_count %&gt;%
+#  ggplot(aes(x=Sex,y=n))+
+#  geom_col(aes(fill=Sex),position = &quot;dodge&quot;)+
+#  geom_text(aes(label=n,y=n+30))+
+#  facet_wrap(~Survived)</code></pre>
 <pre class="r"><code># number of passengers surviving vs. dying
 survived_count &lt;- titanic %&gt;%
   mutate(survived = ifelse(Survived==0, &quot;no&quot;, &quot;yes&quot;)) %&gt;%

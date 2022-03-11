@@ -132,11 +132,11 @@ sex_class_count %>%
 ##n+30 means the position move up?
 
 Question 3. How many passengers of each sex survived and how many of them did not? What is the survival rate for passengers of each sex?
-```{r message=FALSE}
+```{r message=FALSE, error=FALSE}
 sex_survival_count <- titanic %>%
   count(Sex, Survived) %>%
-  mutate(percentage = round(n/nrow(titanic)*100,2))
-kable(sex_survival_count)
+  mutate(percentage = round(n/nrow(titanic)*100,2))%>%
+kable()
 tb_survival_sex<-table(titanic$Survived, titanic$Sex)
 tb1<-prop.table(head(table(titanic$Survived, titanic$Sex),1))
 tb2<-prop.table(tail(table(titanic$Survived, titanic$Sex),1))
@@ -148,16 +148,16 @@ titanic %>%
   mutate(Survived_yn =ifelse(Survived ==0,"no","yes")) %>%
   group_by(Sex, Survived_yn) %>%
   count() %>%
-  mutate(perc)
+  mutate()
 
 ```
 
-```{r message=FALSE}
-sex_survival_count %>%
-  ggplot(aes(x=Sex,y=n))+
-  geom_col(aes(fill=Sex),position = "dodge")+
-  geom_text(aes(label=n,y=n+30))+
-  facet_wrap(~Survived)
+```{r message=FALSE,error=FALSE}
+#sex_survival_count %>%
+#  ggplot(aes(x=Sex,y=n))+
+#  geom_col(aes(fill=Sex),position = "dodge")+
+#  geom_text(aes(label=n,y=n+30))+
+#  facet_wrap(~Survived)
 ```
 
 ```{r message=FALSE}
