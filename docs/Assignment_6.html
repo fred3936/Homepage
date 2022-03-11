@@ -260,6 +260,9 @@ $(document).ready(function () {
     <li>
       <a href="Assignment_5.html">Assignment 5</a>
     </li>
+    <li>
+      <a href="Assignment_6.html">Assignment 6</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -549,6 +552,7 @@ data1%&gt;%select(1:10)%&gt;%head(6)</code></pre>
 <p><img src="Assignment_6_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p>2.4 Plot the daily average ambient temperature throughout the year with a continuous line, as shown below. <br></p>
 <pre class="r"><code>data1 %&gt;% group_by(date)%&gt;%
+  filter(!is.na(AMB_TEMP))%&gt;%
   mutate(daily_average_ambient_temp = mean(AMB_TEMP))%&gt;%
   ggplot(aes(x=date,y=daily_average_ambient_temp)) +
   geom_line()</code></pre>
@@ -587,6 +591,7 @@ data1</code></pre>
 <p>2.6 Plot the per hour variation in PM2.5 in the first week of September with a continuous line, as shown below. Hint: uniting the date and hour and parsing the new variable might be helpful. <br></p>
 <pre class="r"><code>data1$time &lt;- with(data1, ymd(date) + hms(hour))
 data1 %&gt;%
+  filter(!is.na(PM2.5))%&gt;%
   filter(date==&quot;2015-09-01&quot;|date==&quot;2015-09-02&quot;|date==&quot;2015-09-03&quot;|date==&quot;2015-09-04&quot;|date==&quot;2015-09-05&quot;|date==&quot;2015-09-06&quot;|date==&quot;2015-09-07&quot;) %&gt;%
   ggplot(aes(x=time,y=PM2.5)) +
   geom_line()</code></pre>

@@ -168,6 +168,7 @@ data1 %>%
 
 ```{r}
 data1 %>% group_by(date)%>%
+  filter(!is.na(AMB_TEMP))%>%
   mutate(daily_average_ambient_temp = mean(AMB_TEMP))%>%
   ggplot(aes(x=date,y=daily_average_ambient_temp)) +
   geom_line()
@@ -209,6 +210,7 @@ Hint: uniting the date and hour and parsing the new variable might be helpful.
 ```{r}
 data1$time <- with(data1, ymd(date) + hms(hour))
 data1 %>%
+  filter(!is.na(PM2.5))%>%
   filter(date=="2015-09-01"|date=="2015-09-02"|date=="2015-09-03"|date=="2015-09-04"|date=="2015-09-05"|date=="2015-09-06"|date=="2015-09-07") %>%
   ggplot(aes(x=time,y=PM2.5)) +
   geom_line()
