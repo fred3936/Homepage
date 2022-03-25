@@ -16,6 +16,8 @@ navbar:
           href: Assignment_6.html
         - text: "Assignment 7"
           href: Assignment_7.html
+        - text: "Assignment 8"
+          href: Assignment_8.html
     - text: "Labs"
       menu:
         - text: "Labs"
