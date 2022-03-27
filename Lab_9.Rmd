@@ -1,0 +1,86 @@
+---
+title: "Lab_9"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+dna_or_rna <- function(sequence) {
+  sequence_split<-str_split(sequence ,"")
+  sequence_split<-unlist(sequence_split)
+  sequence_split<-unique(sequence_split)
+  if (all(sequence_split %in% c("a", "u", "g", "c")) & "u" %in% sequence_split){
+    return("RNA")
+  }
+  else if (all(sequence_split %in% c("a", "t", "g", "c")) & "t" %in% sequence_split ){
+    return("DNA")
+  }
+  else {
+    return("unknown")
+  }
+}
+   
+dna_or_rna("attggc")
+dna_or_rna("gccaau")
+dna_or_rna("ccagac")
+dna_or_rna("tgcacug")
+```
+**1.2**
+```{r}
+sequences = c("ttgaatgccttacaactgatcattacacaggcggcatgaagcaaaaatatactgtgaaccaatgcaggcg", 
+              "gauuauuccccacaaagggagugggauuaggagcugcaucauuuacaagagcagaauguuucaaaugcau", 
+              "gaaagcaagaaaaggcaggcgaggaagggaagaagggggggaaacc", 
+              "guuuccuacaguauuugaugagaaugagaguuuacuccuggaagauaauauuagaauguuuacaacugcaccugaucagguggauaaggaagaugaagacu", 
+              "gataaggaagaugaagacutucaggaaucuaauaaaaugcacuccaugaauggauucauguaugggaaucagccggguc")
+
+Result <- NULL
+for (i in 1:length(sequences)){
+  Result <- c(Result, dna_or_rna(sequences[i]))
+}
+Result
+```
+
+
+```{r}
+map_chr(sequences, dna_or_rna)
+```
+
+```{r}
+map(sequences, dna_or_rna) %>% unlist()
+```
+
+```{r}
+dna_or_rna <- function(sequence) {
+  sequence_split<-str_split(sequence ,"")
+  sequence_split<-unlist(sequence_split)
+  sequence_split<-unique(sequence_split)
+  sequence_split<-tolower(sequence_split)
+
+  if (all(sequence_split %in% c("a", "u", "g", "c")) & "u" %in% sequence_split){
+    return("RNA")
+  }
+  else if (all(sequence_split %in% c("a", "t", "g", "c")) & "t" %in% sequence_split ){
+    return("DNA")
+  }
+  else {
+    return("unknown")
+  }
+}
+
+dna_or_rna("ATTGGC")
+
+dna_or_rna("gCCAAu")
+
+dna_or_rna("ggcacgG")
+```
+
+
+
