@@ -1,0 +1,113 @@
+---
+title: "Project"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+```
+
+```{r}
+# Load required packages
+library(tidyverse)
+library(knitr)
+library(dplyr)
+library(ggplot2)
+library(units)
+library(hms)
+library(lubridate)
+```
+
+
+```{r}
+data <- read.csv(file = 'Complaint_Problems.csv',stringsAsFactors = TRUE)
+head(data)
+```
+
+```{r}
+df <- data %>% sample_frac(0.01)
+```
+
+
+
+```{r}
+levels(df$UnitType)
+levels(df$UnitType) <- list(Apartment  = "APARTMENT", Building = "BUILDING",Building ="BUILDING-W",Building ="BUILDING-WIDE", Public_Area = "PUBLIC ARE",Public_Area = "PUBLIC AREA", Public_Area ="PUBLIC PAR", Public_Area ="PUBLIC PARTS" )
+```
+
+```{r}
+df %>%
+  group_by(UnitType) %>% 
+  filter(n() >100)%>% 
+  ggplot(aes(x=UnitType)) +
+  geom_bar(aes(fill=Type))
+```  
+
+```{r}
+df$StatusDate<-as.Date(df$StatusDate,format="%m/%d/%Y")
+df<-df %>% group_by(StatusDate)%>%
+  filter(!is.na(StatusDate))%>%
+  dplyr::mutate(year = lubridate::year(StatusDate), 
+                month = lubridate::month(StatusDate),
+                day = lubridate::day(StatusDate))
+
+df1 <- df %>% filter(year=="2014")%>%
+ group_by(month)%>%
+ summarise(freq=n())
+
+levels(df1$month) <- list(Jan  = "1", Feb = "2", Mar ="3",Apr ="4", May = "5",Jun = "6", Jul ="7", Aug ="8",Sept ="9",Oct ="10",Nov ="11",Dec ="12" )
+
+df1$month[df1$month == "1" ] <- "Jan"
+df1$month[df1$month == "2" ] <- "Feb"
+df1$month[df1$month == "3" ] <- "Mar"
+df1$month[df1$month == "4" ] <- "Apr"
+df1$month[df1$month == "5" ] <- "May"
+df1$month[df1$month == "6" ] <- "Jun"
+df1$month[df1$month == "7" ] <- "Jul"
+df1$month[df1$month == "8" ] <- "Aug"
+df1$month[df1$month == "9" ] <- "Sept"
+df1$month[df1$month == "10" ] <- "Oct"
+df1$month[df1$month == "11" ] <- "Nov"
+df1$month[df1$month == "12" ] <- "Dec"
+
+#df1$month %>%
+#  fct_recode("Jan" = "1", "Feb" = "2") %>% levels()
+
+```
+
+```{r}
+df %>% filter(year=="2014")%>%
+ group_by(month)%>%
+ summarise(freq=n())%>%
+ ggplot(aes(x=month, y=freq)) +
+  geom_line()
+```
+
+```{r}
+df1%>%
+ ggplot(aes(x=month, y=freq)) +
+  geom_col()
+```
+
+```{r}
+levels(df1$month)
+
+month_levels <- c(
+  "Jan", "Feb", "Mar", "Apr", "May", "Jun", 
+  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+)
+
+df1$month <- factor(df1$month, levels = month_levels)
+
+df1$month
+```
+
+```{r}
+df1%>%
+ ggplot(aes(x=month, y=freq)) +
+  geom_col()
+```
+
+
+
+
