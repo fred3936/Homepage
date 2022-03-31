@@ -11,7 +11,7 @@
 
 
 
-<title>Lab Pages With URL</title>
+<title>Lab_7</title>
 
 <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -307,43 +307,265 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Lab Pages With URL</h1>
+<h1 class="title toc-ignore">Lab_7</h1>
 
 </div>
 
 
-<div id="lab-1" class="section level3">
-<h3>Lab 1</h3>
-<p><a href="https://github.com/therkildsen-class/ntres-6100-fred3936/blob/173325a733dba856d2942a54ce6748bbff13a2dc/lab1.html" class="uri">https://github.com/therkildsen-class/ntres-6100-fred3936/blob/173325a733dba856d2942a54ce6748bbff13a2dc/lab1.html</a></p>
-</div>
-<div id="lab-2" class="section level3">
-<h3>Lab 2</h3>
-<p><a href="https://github.com/fred3936/Lab2_CV.git" class="uri">https://github.com/fred3936/Lab2_CV.git</a></p>
-</div>
-<div id="lab-3" class="section level3">
-<h3>Lab 3</h3>
-<p><a href="https://fred3936.github.io/lab3/" class="uri">https://fred3936.github.io/lab3/</a></p>
-</div>
-<div id="lab-4" class="section level3">
-<h3>Lab 4</h3>
-<p><a href="https://github.com/fred3936/lab-4.git" class="uri">https://github.com/fred3936/lab-4.git</a></p>
-</div>
-<div id="lab-5" class="section level3">
-<h3>Lab 5</h3>
-<p><a href="https://fred3936.github.io/Homepage/Lab_5.html" class="uri">https://fred3936.github.io/Homepage/Lab_5.html</a></p>
-</div>
-<div id="lab-6" class="section level3">
-<h3>Lab 6</h3>
-<p><a href="https://fred3936.github.io/Homepage/Lab_6.html" class="uri">https://fred3936.github.io/Homepage/Lab_6.html</a></p>
-</div>
-<div id="lab-7" class="section level3">
-<h3>Lab 7</h3>
-<p><a href="https://fred3936.github.io/Homepage/Lab_7.html" class="uri">https://fred3936.github.io/Homepage/Lab_7.html</a></p>
-</div>
-<div id="lab-9" class="section level3">
-<h3>Lab 9</h3>
-<p><a href="https://fred3936.github.io/Homepage/Lab_9.html" class="uri">https://fred3936.github.io/Homepage/Lab_9.html</a></p>
-</div>
+<pre class="r"><code># Load required packages
+library(tidyverse)</code></pre>
+<pre><code>## -- Attaching packages --------------------------------------- tidyverse 1.3.1 --</code></pre>
+<pre><code>## v ggplot2 3.3.5     v purrr   0.3.4
+## v tibble  3.1.6     v dplyr   1.0.7
+## v tidyr   1.2.0     v stringr 1.4.0
+## v readr   2.1.2     v forcats 0.5.1</code></pre>
+<pre><code>## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>library(knitr)
+#install.packages(&quot;nycflights13&quot;)
+library(nycflights13) 
+
+
+flights %&gt;% head() %&gt;% kable()</code></pre>
+<table>
+<colgroup>
+<col width="2%" />
+<col width="3%" />
+<col width="2%" />
+<col width="5%" />
+<col width="8%" />
+<col width="5%" />
+<col width="5%" />
+<col width="8%" />
+<col width="5%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="2%" />
+<col width="5%" />
+<col width="5%" />
+<col width="2%" />
+<col width="4%" />
+<col width="11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right">year</th>
+<th align="right">month</th>
+<th align="right">day</th>
+<th align="right">dep_time</th>
+<th align="right">sched_dep_time</th>
+<th align="right">dep_delay</th>
+<th align="right">arr_time</th>
+<th align="right">sched_arr_time</th>
+<th align="right">arr_delay</th>
+<th align="left">carrier</th>
+<th align="right">flight</th>
+<th align="left">tailnum</th>
+<th align="left">origin</th>
+<th align="left">dest</th>
+<th align="right">air_time</th>
+<th align="right">distance</th>
+<th align="right">hour</th>
+<th align="right">minute</th>
+<th align="left">time_hour</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">2013</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">517</td>
+<td align="right">515</td>
+<td align="right">2</td>
+<td align="right">830</td>
+<td align="right">819</td>
+<td align="right">11</td>
+<td align="left">UA</td>
+<td align="right">1545</td>
+<td align="left">N14228</td>
+<td align="left">EWR</td>
+<td align="left">IAH</td>
+<td align="right">227</td>
+<td align="right">1400</td>
+<td align="right">5</td>
+<td align="right">15</td>
+<td align="left">2013-01-01 05:00:00</td>
+</tr>
+<tr class="even">
+<td align="right">2013</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">533</td>
+<td align="right">529</td>
+<td align="right">4</td>
+<td align="right">850</td>
+<td align="right">830</td>
+<td align="right">20</td>
+<td align="left">UA</td>
+<td align="right">1714</td>
+<td align="left">N24211</td>
+<td align="left">LGA</td>
+<td align="left">IAH</td>
+<td align="right">227</td>
+<td align="right">1416</td>
+<td align="right">5</td>
+<td align="right">29</td>
+<td align="left">2013-01-01 05:00:00</td>
+</tr>
+<tr class="odd">
+<td align="right">2013</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">542</td>
+<td align="right">540</td>
+<td align="right">2</td>
+<td align="right">923</td>
+<td align="right">850</td>
+<td align="right">33</td>
+<td align="left">AA</td>
+<td align="right">1141</td>
+<td align="left">N619AA</td>
+<td align="left">JFK</td>
+<td align="left">MIA</td>
+<td align="right">160</td>
+<td align="right">1089</td>
+<td align="right">5</td>
+<td align="right">40</td>
+<td align="left">2013-01-01 05:00:00</td>
+</tr>
+<tr class="even">
+<td align="right">2013</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">544</td>
+<td align="right">545</td>
+<td align="right">-1</td>
+<td align="right">1004</td>
+<td align="right">1022</td>
+<td align="right">-18</td>
+<td align="left">B6</td>
+<td align="right">725</td>
+<td align="left">N804JB</td>
+<td align="left">JFK</td>
+<td align="left">BQN</td>
+<td align="right">183</td>
+<td align="right">1576</td>
+<td align="right">5</td>
+<td align="right">45</td>
+<td align="left">2013-01-01 05:00:00</td>
+</tr>
+<tr class="odd">
+<td align="right">2013</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">554</td>
+<td align="right">600</td>
+<td align="right">-6</td>
+<td align="right">812</td>
+<td align="right">837</td>
+<td align="right">-25</td>
+<td align="left">DL</td>
+<td align="right">461</td>
+<td align="left">N668DN</td>
+<td align="left">LGA</td>
+<td align="left">ATL</td>
+<td align="right">116</td>
+<td align="right">762</td>
+<td align="right">6</td>
+<td align="right">0</td>
+<td align="left">2013-01-01 06:00:00</td>
+</tr>
+<tr class="even">
+<td align="right">2013</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">554</td>
+<td align="right">558</td>
+<td align="right">-4</td>
+<td align="right">740</td>
+<td align="right">728</td>
+<td align="right">12</td>
+<td align="left">UA</td>
+<td align="right">1696</td>
+<td align="left">N39463</td>
+<td align="left">EWR</td>
+<td align="left">ORD</td>
+<td align="right">150</td>
+<td align="right">719</td>
+<td align="right">5</td>
+<td align="right">58</td>
+<td align="left">2013-01-01 05:00:00</td>
+</tr>
+</tbody>
+</table>
+<p>Question 1: Compute the average delay by destination, then join on the airports data frame so you can show the spatial distribution of delays. Here’s an easy way to draw a map of the United States:</p>
+<pre class="r"><code>#install.packages(&quot;maps&quot;)
+library(maps) </code></pre>
+<pre><code>## 
+## 载入程辑包：&#39;maps&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     map</code></pre>
+<pre class="r"><code>airports %&gt;%
+  semi_join(flights, c(&quot;faa&quot; = &quot;dest&quot;)) %&gt;%
+  ggplot(aes(lon, lat)) +
+    borders(&quot;state&quot;) +
+    geom_point() +
+    coord_quickmap()</code></pre>
+<p><img src="Lab_7_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre class="r"><code>#install.packages(&quot;maps&quot;)
+#library(maps) 
+
+airports %&gt;%
+  semi_join(flights, c(&quot;faa&quot; = &quot;dest&quot;)) %&gt;%
+  ggplot(aes(lon, lat)) +
+    borders(&quot;state&quot;) +
+    geom_point(size=2.5,colour=&quot;blue&quot;,alpha = 1/5) +
+    coord_quickmap()</code></pre>
+<p><img src="Lab_7_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre class="r"><code>avg_delay &lt;- 
+  flights%&gt;%
+  group_by(dest)%&gt;%
+  summarise(mean_delay = mean(arr_delay, na.rm = TRUE))%&gt;%
+  inner_join(airports, by = c(dest = &quot;faa&quot;))
+
+avg_delay %&gt;%
+  ggplot(aes(lon, lat, colour = mean_delay)) +
+  borders(&quot;state&quot;) +
+  geom_point() +
+  coord_quickmap()</code></pre>
+<p><img src="Lab_7_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre class="r"><code>avg_dest_delays &lt;-
+  flights %&gt;%
+  group_by(dest) %&gt;%
+  # arrival delay NA&#39;s are cancelled flights
+  summarise(delay = mean(arr_delay, na.rm = TRUE)) %&gt;%
+  inner_join(airports, by = c(dest = &quot;faa&quot;))
+
+avg_dest_delays %&gt;%
+  ggplot(aes(lon, lat, colour = delay)) +
+  borders(&quot;state&quot;) +
+  geom_point() +
+  coord_quickmap()</code></pre>
+<p><img src="Lab_7_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<pre class="r"><code>planes_info &lt;- inner_join(flights,
+                          select(planes,tailnum,year),
+                          by = &quot;tailnum&quot;,
+                          suffix = c(&quot;_flight&quot;,&quot;_plane&quot;))%&gt;%
+                          mutate(age=year_flight-year_plane)%&gt;%
+                          filter(!is.na(age)) %&gt;%
+                          group_by(age) %&gt;%
+              summarise(
+                dep_delay_mean = mean(dep_delay, na.rm = TRUE),
+                arr_delay_mean = mean(arr_delay, na.rm = TRUE)
+              )
+ggplot(planes_info, aes(x = age, y = dep_delay_mean)) +
+  geom_col()</code></pre>
+<p><img src="Lab_7_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 
 
 
