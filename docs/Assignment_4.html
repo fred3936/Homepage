@@ -252,7 +252,7 @@ $(document).ready(function () {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="Assignment.html">Assignments</a>
+      <a href="Assignment.html">Assignment 1</a>
     </li>
     <li>
       <a href="Assignment_4.html">Assignment 4</a>
@@ -262,6 +262,15 @@ $(document).ready(function () {
     </li>
     <li>
       <a href="Assignment_6.html">Assignment 6</a>
+    </li>
+    <li>
+      <a href="Assignment_7.html">Assignment 7</a>
+    </li>
+    <li>
+      <a href="Assignment_8.html">Assignment 8</a>
+    </li>
+    <li>
+      <a href="Project.html">Project</a>
     </li>
   </ul>
 </li>
@@ -273,13 +282,22 @@ $(document).ready(function () {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="Lab.html">Labs</a>
+      <a href="Lab.html">Lab 1</a>
     </li>
     <li>
       <a href="Lab_5.html">Lab 5</a>
     </li>
     <li>
       <a href="Lab_6.html">Lab 6</a>
+    </li>
+    <li>
+      <a href="Lab_7.html">Lab 7</a>
+    </li>
+    <li>
+      <a href="Lab_8.html">Lab 8</a>
+    </li>
+    <li>
+      <a href="Lab_9.html">Lab 9</a>
     </li>
   </ul>
 </li>
@@ -644,7 +662,7 @@ Theoph = rename(Theoph, Concentration = conc )</code></pre>
 </div>
 <div id="create-a-new-column-called-quantity-that-equals-to-wt-x-dose-in-the-theoph-dataset.-this-will-tell-you-the-absolute-quantity-of-drug-administered-to-the-subject-in-mg.-replace-the-dose-variable-with-quantity." class="section level4">
 <h4>2.5 Create a new column called <code>Quantity</code> that equals to <code>Wt</code> x <code>Dose</code> in the <code>Theoph</code> dataset. This will tell you the absolute quantity of drug administered to the subject (in mg). Replace the <code>Dose</code> variable with <code>Quantity</code>.</h4>
-<pre class="r"><code>Theoph = mutate(Theoph, Quantity = Weight * Dose)
+<pre class="r"><code>Theoph&lt;-Theoph %&gt;%mutate(Theoph, Quantity = Weight * Dose)
 Theoph %&gt;%select(Subject, Weight, Quantity,Time, Concentration) %&gt;% head()</code></pre>
 <pre><code>## # A tibble: 6 x 5
 ##   Subject Weight Quantity  Time Concentration
@@ -672,7 +690,6 @@ Theoph %&gt;%select(Subject, Weight, Quantity,Time, Concentration) %&gt;% head()
 ## 4 11                       4.51        54.1
 ## 5 3                        5.09        49.8
 ## 6 2                        4.82        48.4</code></pre>
-<p><br></p>
 </div>
 </div>
 <div id="exercise-3.-unemployment-in-the-us-1967-2015-optional" class="section level2">
@@ -803,16 +820,13 @@ Theoph %&gt;%select(Subject, Weight, Quantity,Time, Concentration) %&gt;% head()
 </tr>
 </tbody>
 </table>
-<p><br></p>
 <div id="plot-the-trend-in-number-of-unemployed-persons-unemploy-though-time-using-the-economics-dataset-shown-above.-and-for-this-question-only-hide-your-code-and-only-show-the-plot." class="section level4">
 <h4>3.1 Plot the trend in number of unemployed persons (<code>unemploy</code>) though time using the economics dataset shown above. And for this question only, <strong>hide your code and only show the plot</strong>.</h4>
 <pre class="r"><code>## Write your code here</code></pre>
-<p><br></p>
 </div>
 <div id="edit-the-plot-title-and-axis-labels-of-the-previous-plot-appropriately.-make-y-axis-start-from-0.-change-the-background-theme-to-what-is-shown-below.-hint-search-for-help-online-if-needed" class="section level4">
 <h4>3.2 Edit the plot title and axis labels of the previous plot appropriately. Make y axis start from 0. Change the background theme to what is shown below. (Hint: search for help online if needed)</h4>
 <pre class="r"><code>## Write your code here</code></pre>
-<p><br></p>
 </div>
 </div>
 </div>
